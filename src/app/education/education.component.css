@@ -6,20 +6,14 @@ body {
 input {
   background-color: transparent;
   color: rgb(29, 22, 48);
-  outline: none;
-  outline-style: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: solid white 1px;
-  padding: 10px 10px 0px 10px;
+  
 }
 
 input:focus {
   background-color: transparent;
 }
-.textbox {
-    width: 10%;
+.datetextbox {
+    width: 20%;
 }
 button {
   background-color: #3969ee;

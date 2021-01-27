@@ -6,30 +6,43 @@
     <div class="content">
     <div class="welcome">Education Details</div>     
     <form>
-        Type: 
+        <label>Type: </label>
         <select placeholder="Education Type" (change)="changeEducationType($event.target.value)">
-            <option *ngFor = "let edu of educationTypeArray">{{edu.type}}</option>
+            <option *ngFor = "let edu of educationType">{{edu.type}}</option>
+        </select> &nbsp; &nbsp; &nbsp;
+
+        <label>Degree/Diploma:</label>
+        <select style="width: 200px;">
+            <option *ngFor = "let course of courses">{{course}}</option>
         </select><br>
-        Start Date: 
-        <input type="text" class="textbox" onfocus="(this.type='date')" onblur="(this.type='text')"> &nbsp;
-        End Date:
-        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"><br>
-        Mode:
+
+        <label>Start Date:</label>
+        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')"> &nbsp;&nbsp;
+
+        <label>End Date:</label>
+        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')"><br>
+
+        <label>Mode:</label>
         <select>
             <option *ngFor = "let mode of educationMode">{{mode}}</option>
         </select><br>
-        Degree/Diploma:
+
+        <label>Institution:</label><br>
+        <input type="text"><br>
+
+        <label>State:</label><br>
+        <select placeholder="State" (change)="changeCity($event.target.value)">
+            <option *ngFor = "let state of StateAndCity">{{state.state}}</option>
+        </select><br>
+
+        <label>City:</label><br>
         <select>
-            <option *ngFor = "let course of courses">{{course}}</option>
-          </select><br>
-        Institution:
-        <input type="text"><br>
-        State:
-        <input type="text"><br>
-        City:
-        <input type="text"><br>
-        Percentage:
+            <option *ngFor = "let city of cities">{{city}}</option>
+        </select><br>
+
+        <label>Percentage:</label><br>
         <input type="number"><br>
+
         <button type="button">Save</button>
         <button type="button">Add</button>
 
