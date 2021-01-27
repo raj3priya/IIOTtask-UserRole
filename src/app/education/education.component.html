@@ -5,7 +5,7 @@
     <div class='overlay'></div> 
     <div class="content">
     <div class="welcome">Education Details</div>     
-    <form>
+    <form #educationForm="ngForm">
         <label>Type: </label>
         <select placeholder="Education Type" (change)="changeEducationType($event.target.value)">
             <option *ngFor = "let edu of educationType">{{edu.type}}</option>
@@ -13,7 +13,7 @@
 
         <label>Degree/Diploma:</label>
         <select style="width: 200px;">
-            <option *ngFor = "let course of courses">{{course}}</option>
+            <option *ngFor = "let course of courses" >{{course}}</option>
         </select><br>
 
         <label>Start Date:</label>
@@ -24,7 +24,7 @@
 
         <label>Mode:</label>
         <select>
-            <option *ngFor = "let mode of educationMode">{{mode}}</option>
+            <option *ngFor = "let mode of educationMode" >{{mode}}</option>
         </select><br>
 
         <label>Institution:</label><br>

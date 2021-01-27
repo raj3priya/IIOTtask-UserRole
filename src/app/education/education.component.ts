@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-education',
@@ -10,7 +11,6 @@ export class EducationComponent implements OnInit {
   
   educationMode = ["","Correspondence","Full Time","Part Time","Others"];
   educationType: Array<any> = [
-    {type: ''},
     {type: 'Degree', courses: ["","AMIE","Applied Arts","B.Arch","B.B.M","B.Com","B.Ed",
                                 "B.Pharm","B.Sc(Engg)","B.Sc(IT)","B.Sc(Tech)","B.Tech",
                                 "B.Tech(HONS)","B.A","Bachelor in Infmn Systems",
@@ -28,7 +28,6 @@ export class EducationComponent implements OnInit {
   ];
   courses:Array<any>;
   StateAndCity: Array<any> = [
-    {state: ''},
     {state: 'Andaman & Nicobar Islands', cities:[""]},
     {state: 'Andhra Pradesh', cities:[""]},
     {state: 'Arunachal Pradesh', cities:[""]},
@@ -88,7 +87,7 @@ export class EducationComponent implements OnInit {
     this.courses = this.educationType.find(edu => edu.type == educationType).courses;
   }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
