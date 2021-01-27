@@ -1,18 +1,13 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(174, 174, 240);
+    height: 100%;
 }
 
 input {
   background-color: transparent;
-  color: rgb(29, 22, 48);
-  outline: none;
-  outline-style: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: solid white 1px;
   padding: 10px 10px 0px 10px;
+  border-color: 1px solid black;
 }
 
 input:focus {
@@ -26,7 +21,7 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 50%;
+  width: 100%;
   opacity: 0.9;
 }
 
@@ -88,18 +83,18 @@ button:hover {
     flex-flow: column;
     box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    height: 680px;
-    width: 360px;
+    height: 1500px;
+    width: 500px;
     background: #fff;
     background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
   }
 
   .overlay {
-    background: rgb(182, 202, 245);
+    background: rgb(156, 184, 245);
     opacity: 0.85;
     filter: alpha(opacity=85);
-    height: 680px;
+    height: 1500px;
     position: absolute;
-    width: 360px;
+    width: 500px;
     z-index: 1;
   }

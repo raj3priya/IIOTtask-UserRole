@@ -4,9 +4,12 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
+import { ValidateEqualModule } from 'ng-validate-equal';
+
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     RegisterComponent
   ],
@@ -14,7 +17,8 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ValidateEqualModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,34 +1,135 @@
-
 <body>
-    <form (ngSubmit)="register()">
-    <div class="container">
-    <div class="window">
-    <div class='overlay'></div> 
-    <div class="content">
-    <div class="welcome">Register here!</div>       
-    <input type="text" name="username" placeholder="Enter Name" formControlName="username"><br>
+    <form id="register" #registerForm="ngForm">
+        <div class="container">
+            <div class="window">
+                <div class='overlay'></div>
+                <div class="content">
+                    <div class="welcome">Register here!</div>
+                    <div style="color:red;" *ngIf=!registerForm.valid>
+                        <h2>Please Fill Mandatory Fields (*)</h2>
+                    </div><br>
+                    <label>First Name<span style="color: red;">*</span></label>
+                    <input type="text" name="userfname" placeholder="First Name"
+                        pattern="[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*" required #firstName="ngModel"
+                        [(ngModel)]=user.firstName><br>
+                    <div style="color:red" *ngIf="firstName.invalid && (firstName.dirty||firstName.touched)">
+                        <div *ngIf="firstName.errors?.required">
+                            <h2>First Name is required</h2>
+                        </div>
+                        <div *ngIf="firstName.errors?.pattern">
+                            <h2>Only Alphabets Allowed</h2>
+                        </div><br>
+                    </div>
 
-    <input type="email" name="email" placeholder="Enter Email" formControlName="email"><br>
+                    <label>Last Name<span style="color: red;">*</span></label>
+                    <input type="text" name="userlname" placeholder="Last Name"
+                        pattern="[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*" required #lastName="ngModel"
+                        [(ngModel)]=user.lastName><br>
+                    <div style="color:red" *ngIf="lastName.invalid && (lastName.dirty||lastName.touched)">
+                        <div *ngIf="lastName.errors?.required">
+                            <h2>Last Name is required</h2>
+                        </div>
+                        <div *ngIf="lastName.errors?.pattern">
+                            <h2>Only Alphabets Allowed</h2>
+                        </div><br>
+                    </div>
+                    <label>Email<span style="color: red;">*</span></label>
+                    <input type="text" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        required #email="ngModel" [(ngModel)]=user.email><br>
+                    <div style="color:red" *ngIf="email.invalid && (email.dirty||email.touched)">
+                        <div *ngIf="email.errors?.required">
+                            <h2>Email is required</h2>
+                        </div>
+                        <div *ngIf="email.errors?.pattern">
+                            <h2>Enter Valid Email Address</h2>
+                        </div><br>
+                    </div>
+                    <label>Date Of Birth<span style="color: red;">*</span></label>
+                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="dateOfBirth"
+                        placeholder="Date Of Birth" required #dob="ngModel" [(ngModel)]=user.dob><br>
+                    <div style="color:red" *ngIf="dob.invalid && (dob.dirty||dob.touched)">
+                        <div *ngIf="dob.errors?.required">
+                            <h2>Date Of Birth is required</h2>
+                        </div><br>
+                    </div>
+                    <label>Phone Number<span style="color: red;">*</span></label>
+                    <input type="text" name="phoneno" placeholder="Phone Number" pattern="[0-9]{10}" required
+                        #phoneNo="ngModel" [(ngModel)]=user.phoneNo><br>
+                    <div style="color:red" *ngIf="phoneNo.invalid && (phoneNo.dirty||phoneNo.touched)">
+                        <div *ngIf="phoneNo.errors?.required">
+                            <h2>Phone Number is required</h2>
+                        </div>
+                        <div *ngIf="phoneNo.errors?.pattern">
+                            <h2>Enter a Valid Phone Number of 10 Digits</h2>
+                        </div><br>
+                    </div>
+                    <label>Address<span style="color: red;">*</span></label>
+                    <input type="text" name="street" placeholder="Address Line 1" required #addressLine1="ngModel"
+                        [(ngModel)]=user.addressLine1><br>
+                    <div style="color:red" *ngIf="addressLine1.invalid && (addressLine1.dirty||addressLine1.touched)">
+                        <div *ngIf="addressLine1.errors?.required">
+                            <h2>Address is required</h2>
+                        </div><br>
+                    </div>
+                    <input type="text" name="street" placeholder="Address Line 2" [(ngModel)]=user.addressLine2><br>
+                    <label>State<span style="color: red;">*</span></label>
+                    <input type="text" name="state" placeholder="State" pattern="[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*"
+                        #state="ngModel" required [(ngModel)]=user.state><br>
+                    <div style="color:red" *ngIf="state.invalid && (state.dirty||state.touched)">
+                        <div *ngIf="state.errors?.required">
+                            <h2>Residential State is required</h2>
+                        </div>
+                        <div *ngIf="state.errors?.pattern">
+                            <h2>Only Alphabets Allowed</h2>
+                        </div><br>
+                    </div>
+                    <label>City<span style="color: red;">*</span></label>
+                    <input type="text" name="city" placeholder="City" pattern="[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*" required
+                        #city="ngModel" [(ngModel)]=user.city><br>
+                    <div style="color:red" *ngIf="city.invalid && (city.dirty||city.touched)">
+                        <div *ngIf="city.errors?.required">
+                            <h2>Residential City is required</h2>
+                        </div>
+                        <div *ngIf="city.errors?.pattern">
+                            <h2>Only Alphabets Allowed</h2>
+                        </div><br>
+                    </div>
+                    <label>Pincode<span style="color: red;">*</span></label>
+                    <input type="text" name="pincode" placeholder="Pincode" pattern="[0-9]{6}" required
+                        #pincode="ngModel" [(ngModel)]=user.pincode><br>
+                    <div style="color:red" *ngIf="pincode.invalid && (pincode.dirty||pincode.touched)">
+                        <div *ngIf="pincode.errors?.required">
+                            <h2>Pincode is required</h2>
+                        </div>
+                        <div *ngIf="pincode.errors?.pattern">
+                            <h2>Enter a Valid Pincode of 6 digits</h2>
+                        </div><br>
+                    </div>
+                    <label>Password<span style="color: red;">*</span></label>
+                    <input type="password" name="password" placeholder="Create Password"
+                        pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30})" #pwd="ngModel" required
+                        [(ngModel)]=user.password><br>
+                    <div style="color:red" *ngIf="pwd.invalid && (pwd.dirty||pwd.touched)">
+                        <div *ngIf="pwd.errors?.required">
+                            <h2>Password is required</h2>
+                        </div>
+                        <div *ngIf="pwd.errors?.pattern">
+                            <h2>Enter a Valid Password. Password must contain atleast one Lower Case, one Upper Case,
+                                one Special Character, one Digit, minimum length of 8</h2>
+                        </div><br>
+                    </div>
 
-    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="dateOfBirth" placeholder="Enter Date Of Birth" formControlName="dateOfBirth"><br>
-
-    <input type="tel" name="phoneno" placeholder="Enter Phone" formControlName="phoneno"><br>
-
-    <input type="text" name="street" placeholder="Address" formControlName="street"><br>
-
-    <input type="text" name="city" placeholder="City" formControlName="city"><br>
-
-    <input type="text" name="state" placeholder="State" formControlName="state"><br>
-
-    <input type="number" name="pincode" placeholder="Pincode" formControlName="pincode"><br>
-
-    <input type="password" name="password1" placeholder="Create Password" formControlName="password1"><br>
-
-    <input type="password" name="password2" placeholder="Confirm Password" formControlName="password2"><br>
-
-    <button type="button">Register</button>
-</div>
-</div>
-</div>
-</form>
+                    <label>Confirm Password<span style="color: red;">*</span></label>
+                    <input type="password" name="password2" placeholder="Confirm Password" ngValidateEqual="password"
+                        #confirmPwd="ngModel" [(ngModel)]=confirmPassword required><br>
+                    <div style="color:red" *ngIf="confirmPwd.invalid && (confirmPwd.dirty||confirmPwd.touched)">
+                        <div *ngIf="confirmPwd.errors?.notEqual">
+                            <h2>Password's doesnot match</h2>
+                        </div><br>
+                    </div>
+                    <button type="button">Register</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
