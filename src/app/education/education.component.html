@@ -1,0 +1,42 @@
+
+<body>
+    <div class="container">
+    <div class="window">
+    <div class='overlay'></div> 
+    <div class="content">
+    <div class="welcome">Education Details</div>     
+    <form>
+        Type: 
+        <select placeholder="Education Type" (change)="changeEducationType($event.target.value)">
+            <option *ngFor = "let edu of educationTypeArray">{{edu.type}}</option>
+        </select><br>
+        Start Date: 
+        <input type="text" class="textbox" onfocus="(this.type='date')" onblur="(this.type='text')"> &nbsp;
+        End Date:
+        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"><br>
+        Mode:
+        <select>
+            <option *ngFor = "let mode of educationMode">{{mode}}</option>
+        </select><br>
+        Degree/Diploma:
+        <select>
+            <option *ngFor = "let course of courses">{{course}}</option>
+          </select><br>
+        Institution:
+        <input type="text"><br>
+        State:
+        <input type="text"><br>
+        City:
+        <input type="text"><br>
+        Percentage:
+        <input type="number"><br>
+        <button type="button">Save</button>
+        <button type="button">Add</button>
+
+    </form>
+
+
+</div>
+</div>
+</div>
+</body>
