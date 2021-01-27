@@ -5,9 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { EducationComponent } from './education/education.component';
+import { ValidateEqualModule } from 'ng-validate-equal';
+
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     RegisterComponent,
     EducationComponent
@@ -16,7 +19,8 @@ import { EducationComponent } from './education/education.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ValidateEqualModule
   ],
   providers: [],
   bootstrap: [AppComponent]
