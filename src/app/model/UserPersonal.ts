@@ -10,4 +10,7 @@ export class UserPersonal{
     city:string;
     pincode:string;
     password:string;
+    aadhar:string;
+    pan:string;
+    gender:string;
 }
