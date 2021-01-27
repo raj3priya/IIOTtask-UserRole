@@ -7,7 +7,7 @@
     <div class="welcome">Education Details</div>     
     <form>
         <label>Type: </label>
-        <select placeholder="Education Type" (change)="changeEducationType($event.target.value)">
+        <select placeholder="Education Type" (change)="changeEducationType($event)">
             <option *ngFor = "let edu of educationType">{{edu.type}}</option>
         </select> &nbsp; &nbsp; &nbsp;
 
@@ -31,7 +31,7 @@
         <input type="text"><br>
 
         <label>State:</label><br>
-        <select placeholder="State" (change)="changeCity($event.target.value)">
+        <select placeholder="State" (change)="changeCity($event)">
             <option *ngFor = "let state of StateAndCity">{{state.state}}</option>
         </select><br>
 
