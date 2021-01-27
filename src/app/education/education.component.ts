@@ -9,15 +9,15 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class EducationComponent implements OnInit {
 
   
-  educationMode = ["","Correspondence","Full Time","Part Time","Others"];
+  educationMode = ["Correspondence","Full Time","Part Time","Others"];
   educationType: Array<any> = [
-    {type: 'Degree', courses: ["","AMIE","Applied Arts","B.Arch","B.B.M","B.Com","B.Ed",
+    {type: 'Degree', courses: ["AMIE","Applied Arts","B.Arch","B.B.M","B.Com","B.Ed",
                                 "B.Pharm","B.Sc(Engg)","B.Sc(IT)","B.Sc(Tech)","B.Tech",
                                 "B.Tech(HONS)","B.A","Bachelor in Infmn Systems",
                                 "Bachelor of Fine Arts","Bachelor of Mass Media","BBA",
                                 "BCA","BE","BMS","Applied Arts"],
                       branch: []},
-    {type: 'Diploma', courses: ["","Advanced Diploma","DBM","DCA","DCE","DFM","DHRM",
+    {type: 'Diploma', courses: ["Advanced Diploma","DBM","DCA","DCE","DFM","DHRM",
                                 "Dip(Engg)","Dip(IT)","Dip(Mgmt)","Diploma in Architecture",
                                 "Diploma in Commercial Practice","Diploma in Labour Law",
                                 "Diploma in Safety","DIS","DME - Sandwich Course","DMM",
@@ -58,7 +58,7 @@ export class EducationComponent implements OnInit {
     {state: 'Punjab', cities:[""]},
     {state: 'Rajasthan', cities:[""]},
     {state: 'Sikkim', cities:[""]},
-    {state: 'Tamil Nadu', cities:["","Others","N.Patti","Arakkonam","Arcot","Ariyalur","Aruppukottai",
+    {state: 'Tamil Nadu', cities:["Others","N.Patti","Arakkonam","Arcot","Ariyalur","Aruppukottai",
                                   "Bhavani","Chengalpattu","Chennai","Chinna salem","Coimbatore","Coonoor",
                                   "Cuddalore","Dharmapuri","Dindigul","Gingee","Gobichettipalayam","Gudalur",
                                    "Jayankondam","Kanchipuram","Karaikudi","Karungal","Karur","Kollankodu",

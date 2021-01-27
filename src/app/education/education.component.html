@@ -6,45 +6,50 @@
     <div class="content">
     <div class="welcome">Education Details</div>     
     <form #educationForm="ngForm">
-        <label>Type: </label>
-        <select placeholder="Education Type" (change)="changeEducationType($event)">
+        <label>Type: </label><br>
+        <select placeholder="Education Type" (change)="changeEducationType($event)" style="width: 100%;">
+            <option value="" disabled selected>select type</option>
             <option *ngFor = "let edu of educationType">{{edu.type}}</option>
         </select> &nbsp; &nbsp; &nbsp;
-
-        <label>Degree/Diploma:</label>
-        <select style="width: 200px;">
+        <br>
+        <label>Degree/Diploma:</label><br>
+        <select >
+            <option value="" disabled selected>select a course</option>
             <option *ngFor = "let course of courses" >{{course}}</option>
-        </select><br>
+        </select><br><br>
 
         <label>Start Date:</label>
-        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')"> &nbsp;&nbsp;
-
+        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')"> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label>End Date:</label>
-        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')"><br>
+        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')" style="float: right;"><br><br>
 
-        <label>Mode:</label>
-        <select>
+        <label>Mode of Study:</label><br>
+        <select >
+            <option value="" disabled selected>Select mode of Study</option>
             <option *ngFor = "let mode of educationMode" >{{mode}}</option>
-        </select><br>
+        </select><br><br>
 
         <label>Institution:</label><br>
-        <input type="text"><br>
+        <input type="text" style="width: 98.6%;"><br><br>
 
         <label>State:</label><br>
         <select placeholder="State" (change)="changeCity($event)">
+            <option vaue="" disabled selected>select state</option>
             <option *ngFor = "let state of StateAndCity">{{state.state}}</option>
-        </select><br>
+        </select><br><br>
 
         <label>City:</label><br>
         <select>
+            <option value="" disabled selected>select city</option>
             <option *ngFor = "let city of cities">{{city}}</option>
-        </select><br>
+        </select><br><br>
 
         <label>Percentage:</label><br>
-        <input type="number"><br>
+        <input type="number" style="width: 98.6%;"><br><br>
 
-        <button type="button">Save</button>
-        <button type="button">Add</button>
+        <button type="button" style="width: 40%;float: left;">Save</button>
+        <button type="button" style="width: 40%;float: right; ">Add</button>
 
     </form>
 
