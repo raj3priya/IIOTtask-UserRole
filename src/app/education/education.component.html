@@ -8,25 +8,31 @@
     
     <form [formGroup]="EducationForm" novalidate>
         
-        <ul class="radio-type">
+       <!-- <ul class="radio-type">
             <li style="margin-right: 3%;">
-                <input type="radio" value="Secondary" id="secondary" formControlName="type" [(ngModel)]="education.type"  (change)="changeEducationType($event); checkExist($event);"/>
+                <input type="radio" value="Secondary" id="secondary" formControlName="type" [(ngModel)]="education.type"  (change)="changeEducationType($event); checkExist(education.type);"/>
                 <label for="secondary">Secondary</label>
             </li>
             <li style="margin-right: 11%;">
-                <input type="radio" value="HigherSecondary" id="higherSecondary" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist($event);"/>
+                <input type="radio" value="HigherSecondary" id="higherSecondary" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist(education.type);"/>
                 <label for="higherSecondary">Higher Secondary</label>
             </li>
             <li>
-                <input type="radio" value="Degree" id="degree" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist($event);"/>
+                <input type="radio" value="Degree" id="degree" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist(education.type);"/>
                 <label for="degree">Degree</label>
             </li>
             <li>
-                <input type="radio" value="Diploma" id="diploma" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist($event);"/>
+                <input type="radio" value="Diploma" id="diploma" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist(education.type);"/>
                 <label for="diploma">Diploma</label>
             </li>
         </ul>
-        <br><br><br><br>
+        <br><br><br><br> -->
+
+        <label>Type: </label>
+        <select [(ngModel)]="education.type" formControlName="type" (change)="changeEducationType($event); checkExist(education.type);">
+            <option value="" disabled selected>select a type</option>
+            <option *ngFor = "let edu of educationType" value="{{edu.type}}">{{edu.type}}</option>
+        </select> &nbsp; &nbsp; &nbsp;<br>
         
         <label>Degree/Diploma:</label><br>
         <select [(ngModel)]="education.degree" formControlName="degree">

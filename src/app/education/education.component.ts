@@ -1,3 +1,4 @@
+import { flatten, ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -20,6 +21,7 @@ export class EducationComponent implements OnInit {
   mode:string;
   state:string;
   city:string;
+  
   
 
   educationMode = ["Correspondence","Full Time","Part Time","Others"];
@@ -118,6 +120,7 @@ export class EducationComponent implements OnInit {
     {state: 'West Bengal', cities:[""]},
   ];
   cities:Array<any>;
+  
   changeCity(e: any) {
     this.cities = this.StateAndCity.find(s => s.state == e.target.value).cities;
   }
@@ -142,39 +145,55 @@ export class EducationComponent implements OnInit {
       percentage:["", Validators.compose([Validators.required, Validators.pattern('^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$')])]
     })
   }
-
+  updated: boolean;
   save(){
-    if(this.eduDetailsList.length == 0)  // for the 1st time insertion
-      this.eduDetailsList.push(this.education);
 
-    for(var i=0; i<this.eduDetailsList.length;i++){
-      if(this.eduDetailsList[i].type == this.education.type) {  //if already exists, update
-        this.eduDetailsList[i] = this.education;
-        break;
+    this.updated=false;
+    if(this.eduDetailsList.length == 0) { // for the 1st time insertion
+      this.eduDetailsList.push(this.education);
+      this.updated = true;
+    } else {
+      for(var i=0; i < this.eduDetailsList.length && !this.updated ; i++){
+        if(this.eduDetailsList[i].type == this.education.type) {  //if already exists, update
+          this.eduDetailsList[i] = this.education;
+          this.updated = true;
+          break;
+        }
+        else{
+          this.eduDetailsList.push(this.education);
+          break; 
+        }
       }
-      else
-        this.eduDetailsList.push(this.education);  //if not exists, insert as new 
     }
     console.log(this.eduDetailsList); 
-    this.education = new EducationDetails();  // to clear fields
+    this.education = new EducationDetails();  
+    this.education.type ='';
+    //console.log(this.education);// to clear fields and initialise new object
+    
     
   }
 
   next(){
     this.router.navigateByUrl('/work-experience');
   }
-
-  clearObject() {
-    console.log("in clear object");
-    this.education = new EducationDetails();
-  }
-
-  checkExist(e:any){
-    for(var i=0; i<this.eduDetailsList.length;i++){
-      if(this.eduDetailsList[i].type == e.target.value){
-        console.log(this.eduDetailsList[i].type+"  exists");
+  exist:boolean;
+  checkExist(eduType:string){
+    console.log(eduType);
+    this.exist = false;
+    for(var i=0; i < this.eduDetailsList.length; i++){
+      //console.log(this.eduDetailsList[i]);
+      if(this.eduDetailsList[i].type == eduType){
+        console.log(this.eduDetailsList[i].type + "  exists");
+        this.exist=true;
         this.education = this.eduDetailsList[i]; //to show values in respective fields
+        break;
       }
+    }
+
+    if(this.exist == false){
+      console.log(eduType+" not exists")
+      this.education = new EducationDetails();
+      this.education.type = eduType;
     }
   }
 
