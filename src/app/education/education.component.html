@@ -4,56 +4,80 @@
     <div class="window">
     <div class='overlay'></div> 
     <div class="content">
-    <div class="welcome">Education Details</div>     
-    <form #educationForm="ngForm">
-        <label>Type: </label><br>
-        <select placeholder="Education Type" (change)="changeEducationType($event)" style="width: 100%;">
-            <option value="" disabled selected>select type</option>
-            <option *ngFor = "let edu of educationType">{{edu.type}}</option>
-        </select> &nbsp; &nbsp; &nbsp;
-        <br>
+    <div class="welcome">Education Details</div> 
+    
+    <form [formGroup]="EducationForm" novalidate>
+        
+        <ul class="radio-type">
+            <li style="margin-right: 3%;">
+                <input type="radio" value="Secondary" id="secondary" formControlName="type" [(ngModel)]="education.type"  (change)="changeEducationType($event); checkExist($event);"/>
+                <label for="secondary">Secondary</label>
+            </li>
+            <li style="margin-right: 11%;">
+                <input type="radio" value="Higher Secondary" id="higherSecondary" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist($event);"/>
+                <label for="higherSecondary">Higher Secondary</label>
+            </li>
+            <li>
+                <input type="radio" value="Degree" id="degree" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist($event);"/>
+                <label for="degree">Degree</label>
+            </li>
+            <li>
+                <input type="radio" value="Diploma" id="diploma" formControlName="type" [(ngModel)]="education.type" (change)="changeEducationType($event); checkExist($event);"/>
+                <label for="diploma">Diploma</label>
+            </li>
+        </ul>
+        <br><br><br><br>
+        
         <label>Degree/Diploma:</label><br>
-        <select >
+        <select [(ngModel)]="education.degree" formControlName="degree">
             <option value="" disabled selected>select a course</option>
-            <option *ngFor = "let course of courses" >{{course}}</option>
+            <option *ngFor = "let course of courses" value="{{course}}">{{course}}</option>
+        </select><br><br>
+
+        <label>Branch:</label><br>
+        <select [(ngModel)]="education.branch" formControlName="branch">
+            <option value="" disabled selected>select your branch</option>
+            <option *ngFor = "let branch of branches" value="{{branch}}">{{branch}}</option>
         </select><br><br>
 
         <label>Start Date:</label>
-        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')"> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')" [(ngModel)]="education.startDate" formControlName="startDate" style="width: 25%;"> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        
         <label>End Date:</label>
-        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')" style="float: right;"><br><br>
+        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')" [(ngModel)]="education.endDate" formControlName="endDate" style="float: right; width: 25%;"><br><br>
 
         <label>Mode of Study:</label><br>
-        <select >
+        <select [(ngModel)]="education.mode" formControlName="mode">
             <option value="" disabled selected>Select mode of Study</option>
-            <option *ngFor = "let mode of educationMode" >{{mode}}</option>
+            <option *ngFor = "let mode of educationMode" value="{{mode}}">{{mode}}</option>
         </select><br><br>
 
         <label>Institution:</label><br>
-        <input type="text" style="width: 98.6%;"><br><br>
+        <input type="text" style="width: 98.6%;" [(ngModel)]="education.institution" formControlName="institution"><br><br>
 
         <label>State:</label><br>
-        <select placeholder="State" (change)="changeCity($event)">
-            <option vaue="" disabled selected>select state</option>
-            <option *ngFor = "let state of StateAndCity">{{state.state}}</option>
+        <select placeholder="State" [(ngModel)]="education.state" formControlName="state" (change)="changeCity($event)">
+            <option value="" disabled selected>select state</option>
+            <option *ngFor = "let state of StateAndCity" value="{{state.state}}">{{state.state}}</option>
         </select><br><br>
 
         <label>City:</label><br>
-        <select>
+        <select [(ngModel)]="education.city" formControlName="city">
             <option value="" disabled selected>select city</option>
-            <option *ngFor = "let city of cities">{{city}}</option>
+            <option *ngFor = "let city of cities" value="{{city}}">{{city}}</option>
         </select><br><br>
 
         <label>Percentage:</label><br>
-        <input type="number" style="width: 98.6%;"><br><br>
+        <input type="number" style="width: 98.6%;" [(ngModel)]="education.percentage" formControlName="percentage"><br><br>
+        <div class="text-danger" *ngIf="EducationForm.controls.percentage.touched && EducationForm.controls.percentage.hasError('pattern')">
+            Invalid
+        </div>
 
-        <button type="button" style="width: 40%;float: left;">Save</button>
+        <button type="button" style="width: 40%;float: left;" (click)="save()">Save</button>
         <button type="button" style="width: 40%;float: right; ">Add</button>
 
     </form>
-
-
 </div>
 </div>
 </div>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { EducationDetails } from '../model/EducationDetails';
+
 
 @Component({
   selector: 'app-education',
@@ -8,7 +11,17 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class EducationComponent implements OnInit {
 
+  EducationForm: FormGroup;
+  education:EducationDetails = new EducationDetails();
+  eduDetailsList:EducationDetails[] = [];
+  type:string;
+  degree:string;
+  branch:string;
+  mode:string;
+  state:string;
+  city:string;
   
+
   educationMode = ["Correspondence","Full Time","Part Time","Others"];
   educationType: Array<any> = [
     {type: 'Degree', courses: ["AMIE","Applied Arts","B.Arch","B.B.M","B.Com","B.Ed",
@@ -16,17 +29,36 @@ export class EducationComponent implements OnInit {
                                 "B.Tech(HONS)","B.A","Bachelor in Infmn Systems",
                                 "Bachelor of Fine Arts","Bachelor of Mass Media","BBA",
                                 "BCA","BE","BMS","Applied Arts"],
-                      branch: []},
+                      branch: ["Statistics","Mechatronics","Electronics & Communication",
+                      "Financial Accounting","Software Enhineering","Computer Engineering",
+                      "Computer Science & Engineering","Construction Engineering","Digital Electronics",
+                      "ELectronics & Instrumentation","Electronics & Radio Engineering","Instrument Technology",
+                      "Instrumentation & Control","Accountancy","Advertising","Aeronautical","Agriculture",
+                      "Arts","Automobile","Bio Chemistry","Bio medical","Biology","Botany","Business Administration",
+                      "Business Management","Chemical","Civil","Commerce","Communication","Computer Application",
+                      "Computer Science","Computer Technology","Economics","Electrical","Electronics","Energy",
+                      "Foreign Trade","Genearl Medicine","Geo Physics","Geography","Geology","History","Home Science",
+                      "Hotel Management","Industrial Business","Industrial Electronics","Industrial Management",
+                      "Information Technology","Inorganic Chemistry","Instrumentation","Journalism","Literature",
+                      "Management Studies","Marketing","Mass Communication","Maths","Mechanical","Metallurgy","Networking",
+                      "Operations Management","Petrochemicals","Physics","Polymer Science & Tech","Productions","Psychology",
+                      "Public Administration","Socail Work","Socialogy","Zoology","Electrical & Instrumentation","Electrical & Electronics",
+                      "Petroleum","Financial Analysis","Taxation","Defence"]},
     {type: 'Diploma', courses: ["Advanced Diploma","DBM","DCA","DCE","DFM","DHRM",
                                 "Dip(Engg)","Dip(IT)","Dip(Mgmt)","Diploma in Architecture",
                                 "Diploma in Commercial Practice","Diploma in Labour Law",
                                 "Diploma in Safety","DIS","DME - Sandwich Course","DMM",
                                 "DPM","DS&M","Foreign Language","G.D.C"],
-                      branch: []},
+                      branch: ["Accountancy","Advertising","Aeronautical","Agriculture","Automobile",
+                              "Bio Chemistry","Central Excise","Chemical","Civil","Communication",
+                              "Computer Science","Computer Technology","Economics","Electrical","Electronics",
+                              "Geography","Hotel Management","Industrial Electronics","Industrial Security & Safety",
+                              "Information Technology","Instrumentation"]},
     {type: 'Higher Secondary', courses: ["HSC or equivalent"], branch: ["No specialisation"]},
     {type: 'Secondary', courses: ["SSC or equivalent"], branch: ["No specialisation"]},
   ];
   courses:Array<any>;
+  branches:Array<any>;
   StateAndCity: Array<any> = [
     {state: 'Andaman & Nicobar Islands', cities:[""]},
     {state: 'Andhra Pradesh', cities:[""]},
@@ -72,7 +104,13 @@ export class EducationComponent implements OnInit {
                                     "Sankarankoil","Sankari","Sathyamangalam","Sattur","Shenkottai","Sholavandan",
                                     "Sholingur","Sirkali","Sivaganga","Sivagiri","Sivakasi","Srivilliputtur","Surandai",
                                     "Suriyampalayam","Tenkasi","Thammampatti","Thanjavur","Tharamangalam","Tharangambadi",
-                                    "Theni Allinagaram"]},
+                                    "Theni Allinagaram","Thirumangalam","Thiruunindravur","Thiruparappu","Thirupuvanam",
+                                    "Thiruthuraipoondi","Thiruvallur","Thiruvarur","Thoothukudi","Thuraiyur","Tindivanam",
+                                    "Thiruchendur","Tiruchengode","Tiruchirapalli","Tirukalukundram","Tirukkoyilur","Tirunelveli",
+                                    "Tirupathur","Tiruppur","Tiruttani","Tiruvannamalai","Tiruventhipuram","Udhagamandalam",
+                                    "Udumalaipettai","Unnamalaikadal","Usilampatti","Uthamapalayam","Uthiramerur","Vadakkavalliyur",
+                                    "Vadalur","Vadippati","Valparai","Vandavasi","Vaniyambadi","Vedaranyam","Vellakoil","Vellore",
+                                    "Vikramasinapuram","Viluppuram","Virudhachalam","Virudhunagar","Viswanatham"]},
     {state: 'Telangana', cities:[""]},
     {state: 'Tripura', cities:[""]},
     {state: 'Uttar Pradesh', cities:[""]},
@@ -80,16 +118,78 @@ export class EducationComponent implements OnInit {
     {state: 'West Bengal', cities:[""]},
   ];
   cities:Array<any>;
-  changeCity(selectedState: any) {
-    this.cities = this.StateAndCity.find(s => s.state == selectedState).cities;
+  changeCity(e: any) {
+    this.cities = this.StateAndCity.find(s => s.state == e.target.value).cities;
   }
-  changeEducationType(educationType: any){
-    this.courses = this.educationType.find(edu => edu.type == educationType).courses;
+  changeEducationType(e: any){
+    this.courses = this.educationType.find(edu => edu.type == e.target.value).courses;
+    this.branches = this.educationType.find(edu => edu.type == e.target.value).branch;
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.EducationForm = this.fb.group({
+      type:["", Validators.required],
+      degree:["", Validators.required],
+      branch:["", Validators.required],
+      mode:["", Validators.required],
+      startDate:["", Validators.required],
+      endDate:["", Validators.required],
+      institution:["", Validators.required],
+      state:["", Validators.required],
+      city:["", Validators.required],
+      percentage:["", Validators.compose([Validators.required, Validators.pattern('^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$')])]
+    })
   }
+
+  save(){
+    console.log("in save function"); //checking
+    this.eduDetailsList.push(this.education);
+    console.log(this.eduDetailsList); 
+    this.education = new EducationDetails();
+    
+  }
+
+  clearObject() {
+    console.log("in clear object");
+    this.education = new EducationDetails();
+  }
+
+  checkExist(e:any){
+    for(var i=0; i<this.eduDetailsList.length;i++){
+      if(this.eduDetailsList[i].type == e.target.value){
+        console.log("exists");
+        this.education = this.eduDetailsList[i];
+      }
+    }
+  }
+
+  isValidDate(e:any)
+  {
+    var date = e.target.value;
+    // First check for the pattern
+    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(date))
+        return false;
+
+    // Parse the date parts to integers
+    var parts = date.split("/");
+    var day = parseInt(parts[1], 10);
+    var month = parseInt(parts[0], 10);
+    var year = parseInt(parts[2], 10);
+
+    // Check the ranges of month and year
+    if(year < 1000 || year > 3000 || month == 0 || month > 12)
+        return false;
+
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    // Adjust for leap years
+    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+        monthLength[1] = 29;
+
+    // Check the range of the day
+    return day > 0 && day <= monthLength[month - 1];
+};
 
 }
