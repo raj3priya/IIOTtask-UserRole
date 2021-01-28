@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EducationDetails } from '../model/EducationDetails';
 
+
 @Component({
   selector: 'app-education',
   templateUrl: './education.component.html',
@@ -19,6 +20,8 @@ export class EducationComponent implements OnInit {
   mode:string;
   state:string;
   city:string;
+  
+
   educationMode = ["Correspondence","Full Time","Part Time","Others"];
   educationType: Array<any> = [
     {type: 'Degree', courses: ["AMIE","Applied Arts","B.Arch","B.B.M","B.Com","B.Ed",
@@ -136,14 +139,57 @@ export class EducationComponent implements OnInit {
       institution:["", Validators.required],
       state:["", Validators.required],
       city:["", Validators.required],
-      percentage:["", Validators.required],
+      percentage:["", Validators.compose([Validators.required, Validators.pattern('^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$')])]
     })
   }
 
   save(){
-    console.log("in save function");
+    console.log("in save function"); //checking
     this.eduDetailsList.push(this.education);
     console.log(this.eduDetailsList); 
+    this.education = new EducationDetails();
+    
   }
+
+  clearObject() {
+    console.log("in clear object");
+    this.education = new EducationDetails();
+  }
+
+  checkExist(e:any){
+    for(var i=0; i<this.eduDetailsList.length;i++){
+      if(this.eduDetailsList[i].type == e.target.value){
+        console.log("exists");
+        this.education = this.eduDetailsList[i];
+      }
+    }
+  }
+
+  isValidDate(e:any)
+  {
+    var date = e.target.value;
+    // First check for the pattern
+    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(date))
+        return false;
+
+    // Parse the date parts to integers
+    var parts = date.split("/");
+    var day = parseInt(parts[1], 10);
+    var month = parseInt(parts[0], 10);
+    var year = parseInt(parts[2], 10);
+
+    // Check the ranges of month and year
+    if(year < 1000 || year > 3000 || month == 0 || month > 12)
+        return false;
+
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    // Adjust for leap years
+    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+        monthLength[1] = 29;
+
+    // Check the range of the day
+    return day > 0 && day <= monthLength[month - 1];
+};
 
 }

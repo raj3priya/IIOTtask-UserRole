@@ -107,5 +107,50 @@ button:hover {
     width: 100%;
   }
   input{
-    height: 20px;
+    height: 30px;
   }
+
+  .radio-type {
+    list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+.radio-type li {
+    float: left;
+    
+    width: 20%;
+    height: 40px;
+}
+
+.radio-type label,
+.radio-type input {
+    display: block;
+    position: absolute;
+    background-color: #3969ee;
+    padding: 10px 25px 10px 25px;
+    border: none;
+    
+    margin: 10px 30px 0 20px;
+    opacity: 0.85;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.radio-type input[type="radio"] {
+    opacity: 0.01;
+    z-index: 100;
+}
+
+.radio-type input[type="radio"]:checked+label,
+.Checked+label {
+    border-color: #3969ee;
+    border-width: 0.5px;
+    border-style: solid;
+    background:white;
+    color: #3969ee;
+}
+
+.radio-type label:hover {
+    background:  #87a6fc;
+}
