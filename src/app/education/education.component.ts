@@ -54,7 +54,7 @@ export class EducationComponent implements OnInit {
                               "Computer Science","Computer Technology","Economics","Electrical","Electronics",
                               "Geography","Hotel Management","Industrial Electronics","Industrial Security & Safety",
                               "Information Technology","Instrumentation"]},
-    {type: 'Higher Secondary', courses: ["HSC or equivalent"], branch: ["No specialisation"]},
+    {type: 'HigherSecondary', courses: ["HSC or equivalent"], branch: ["No specialisation"]},
     {type: 'Secondary', courses: ["SSC or equivalent"], branch: ["No specialisation"]},
   ];
   courses:Array<any>;
@@ -144,11 +144,24 @@ export class EducationComponent implements OnInit {
   }
 
   save(){
-    console.log("in save function"); //checking
-    this.eduDetailsList.push(this.education);
+    if(this.eduDetailsList.length == 0)  // for the 1st time insertion
+      this.eduDetailsList.push(this.education);
+
+    for(var i=0; i<this.eduDetailsList.length;i++){
+      if(this.eduDetailsList[i].type == this.education.type) {  //if already exists, update
+        this.eduDetailsList[i] = this.education;
+        break;
+      }
+      else
+        this.eduDetailsList.push(this.education);  //if not exists, insert as new 
+    }
     console.log(this.eduDetailsList); 
-    this.education = new EducationDetails();
+    this.education = new EducationDetails();  // to clear fields
     
+  }
+
+  next(){
+    this.router.navigateByUrl('/work-experience');
   }
 
   clearObject() {
@@ -159,37 +172,10 @@ export class EducationComponent implements OnInit {
   checkExist(e:any){
     for(var i=0; i<this.eduDetailsList.length;i++){
       if(this.eduDetailsList[i].type == e.target.value){
-        console.log("exists");
-        this.education = this.eduDetailsList[i];
+        console.log(this.eduDetailsList[i].type+"  exists");
+        this.education = this.eduDetailsList[i]; //to show values in respective fields
       }
     }
   }
-
-  isValidDate(e:any)
-  {
-    var date = e.target.value;
-    // First check for the pattern
-    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(date))
-        return false;
-
-    // Parse the date parts to integers
-    var parts = date.split("/");
-    var day = parseInt(parts[1], 10);
-    var month = parseInt(parts[0], 10);
-    var year = parseInt(parts[2], 10);
-
-    // Check the ranges of month and year
-    if(year < 1000 || year > 3000 || month == 0 || month > 12)
-        return false;
-
-    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-    // Adjust for leap years
-    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-        monthLength[1] = 29;
-
-    // Check the range of the day
-    return day > 0 && day <= monthLength[month - 1];
-};
 
 }
