@@ -3,29 +3,30 @@
     <div class="window">
     <div class='overlay'></div> 
     <div class="content">
-    <div class="welcome">Education Details</div> 
+    <div class="welcome" style="text-align: center;">Work Experience</div> 
     
-    <form [formGroup]="WorkForm" novalidate>
+    <form novalidate>
         
         <div class="form-group">
             <label for="firm">Name of Firm:</label>
             <input type="text" class="form-control" id="firm" aria-describedby="emailHelp">
         </div>
+
         <div class="form-group">
             <label for="position">Position held:</label>
-            <input type="text" class="form-control" id="position" [(ngModel)]="work.position" formControlName="position" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="position" formControlName="position" aria-describedby="emailHelp">
         </div>
         <div class="form-group">
             <label for="salary">Gross Salary:</label>
-            <input type="text" class="form-control" id="salary" [(ngModel)]="work.salary" formControlName="salary" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="salary" formControlName="salary" aria-describedby="emailHelp">
         </div>
 
         <label>From Date:</label>
-        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')" [(ngModel)]="work.fromDate" formControlName="fromDate" style="width: 25%;"> 
+        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')" formControlName="fromDate" style="width: 25%;"> 
         
         
         <label style="float: right;">To Date:</label>
-        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')" [(ngModel)]="work.toDate" formControlName="toDate" style="float: right; width: 25%;"><br><br>
+        <input type="text" class="datetextbox" onfocus="(this.type='date')" onblur="(this.type='text')"formControlName="toDate" style="float: right; width: 25%;"><br><br>
 
         <button type="button" style="width: 30%" (click)="save()">Save</button>
         <button type="button" style="width: 30%; float:right;" (click)="next()">Next</button>
@@ -34,4 +35,73 @@
 </div>
 </div>
 </div>
-</body>
+</body> 
+<!--<div class="container ">
+    <div class="row">
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row register-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Firm *" value="" name="firm" #firm="ngModel"
+                            [(ngModel)]= "work.firm" required />
+                        </div>
+                        <div style="color:red" *ngIf="firm.invalid && (firm.dirty||firm.touched)">
+                            <div *ngIf="firm.errors?.required">
+                                Firm is required
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Position *" value="" name="position" #position="ngModel" [(ngModel)]= "work.position"
+                                required />
+                        </div>
+                        <div style="color:red" *ngIf="position.invalid && (position.dirty||position.touched)">
+                            <div *ngIf="position.errors?.required">
+                                Position is required
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Salary *" value="" pattern="/^\d{1,6}(?:\.\d{0,2})?$/" name="salary" #salary="ngModel"
+                                [(ngModel)]=work.salary required />
+                        </div>
+                        <div style="color:red" *ngIf="salary.invalid && (salary.dirty||salary.touched)">
+                            <div *ngIf="salary.errors?.required">
+                                Salary is required
+                            </div><br>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="From Date *" value="" name="fromDate" #fromDate="ngModel" [(ngModel)]=work.fromDate
+                                required />
+                        </div>
+                        <div style="color:red" *ngIf="fromDate.invalid && (fromDate.dirty||fromDate.touched)">
+                            <div *ngIf="fromDate.errors?.required">
+                                From Date is required
+                            </div><br>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control" placeholder="To Date *" value="" name="toDate" #toDate="ngModel" [(ngModel)]=work.toDate
+                                required />
+                        </div>
+                        <div style="color:red" *ngIf="toDate.invalid && (toDate.dirty||toDate.touched)">
+                            <div *ngIf="toDate.errors?.required">
+                                To Date is required
+                            </div><br>
+                        </div>
+                            
+                        <input type="submit" class="btnRegister"  value="Register"/>
+                    </div>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+</div>
+
+
+-->
+
+

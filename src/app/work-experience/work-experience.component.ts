@@ -12,18 +12,11 @@ import { WorkExperience } from '../model/WorkExperience';
 export class WorkExperienceComponent implements OnInit {
 
   WorkForm: FormGroup;
-  work:WorkExperience = new WorkExperience();
+  work = new WorkExperience();
 
   constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.WorkForm = this.fb.group({
-      firm: ["", Validators.required],
-      position: ["", Validators.required],
-      salary: ["", Validators.compose([Validators.required, Validators.pattern(/^\d{1,6}(?:\.\d{0,2})?$/)])],
-      fromDate: ["", Validators.required],
-      toDate: ["", Validators.required]
-    })
   }
 
   save(){
