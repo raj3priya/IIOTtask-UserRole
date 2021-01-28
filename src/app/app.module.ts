@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { EducationComponent } from './education/education.component';
 import { ValidateEqualModule } from 'ng-validate-equal';
+import { DocumentsUploadComponent } from './documents-upload/documents-upload.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     
     AppComponent,
     RegisterComponent,
-    EducationComponent
+    EducationComponent,
+    DocumentsUploadComponent
   ],
   imports: [
     BrowserModule,
