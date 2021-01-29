@@ -138,6 +138,7 @@ export class EducationComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.eduDetailsList = JSON.parse(sessionStorage.getItem('education') || '{}');
     this.EducationForm = this.fb.group({
       type:["", Validators.required],
       degree:["", Validators.required],
@@ -181,6 +182,11 @@ export class EducationComponent implements OnInit {
   }*/
 
   nextpage(){
+    this.eduDetailsList.push(this.secondaryEdu);
+    this.eduDetailsList.push(this.higherSecondaryEdu);
+    this.eduDetailsList.push(this.degreeEdu);
+    this.eduDetailsList.push(this.diplomaEdu);
+    sessionStorage.setItem('education',JSON.stringify(this.eduDetailsList));
     this.router.navigateByUrl('/work-exp');
   }
 

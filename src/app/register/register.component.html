@@ -424,7 +424,7 @@
                                 </div><br>
                             </div>
                             <div class="form-group">
-                                <input type="text" minlength="12" maxlength="12" name="txtEmpPhone" class="form-control" placeholder="Your Aadhar Number *" value="" pattern="[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}" name="aadhar" #aadhar="ngModel"
+                                <input type="text" minlength="14" maxlength="14" name="txtEmpPhone" class="form-control" placeholder="Your Aadhar Number *" value="" pattern="[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}" name="aadhar" #aadhar="ngModel"
                                 [(ngModel)]=user.aadhar required />
                             </div>
                             <div style="color:red" *ngIf="aadhar.invalid && (aadhar.dirty||aadhar.touched)">
@@ -454,7 +454,7 @@
                                 </div>
                             </div>
                             
-                            <input type="submit" class="btnRegister"  value="Next" [disabled]="!regform.valid" (click) = "nextpage()"/>
+                            <input type="submit" class="btnRegister"  value="Next" (click) = "nextpage()"/>
                         </div>
                     </div>
                 </div>

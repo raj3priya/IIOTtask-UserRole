@@ -19,11 +19,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem('personalDetails') || '{}');
   }
-  
-  
-  register() {
-    console.log("Register clicked");
-  }
   StateAndCity: Array<any> = [
     {state: 'Select State'},
     {state: 'Andaman & Nicobar Islands', cities:[""]},
@@ -82,11 +77,8 @@ export class RegisterComponent implements OnInit {
     this.cities = this.StateAndCity.find(s => s.state == selectedState).cities;
   }
 
-  storeInSession() {
-    sessionStorage.setItem('personalDetails',JSON.stringify(this.user));
-  }
-
   nextpage(){
+    sessionStorage.setItem('personalDetails',JSON.stringify(this.user));
     this.router.navigateByUrl('/education-details');
   }
 

@@ -12,6 +12,7 @@ export class WorkExperienceComponent implements OnInit {
 
   constructor(private datePipe: DatePipe, private router: Router) { }
   work = new WorkExperience();
+  nextButton:string;
 
   ngOnInit(): void {
     this.work = JSON.parse(sessionStorage.getItem('workExperience') || '{}');
@@ -31,11 +32,8 @@ export class WorkExperienceComponent implements OnInit {
     }
   }
 
-  storeInSession() {
-    sessionStorage.setItem('workExperience',JSON.stringify(this.work));
-  }
-
   nextpage(){
+    sessionStorage.setItem('workExperience',JSON.stringify(this.work));
     this.router.navigateByUrl('/documents-upload');
   }
 
