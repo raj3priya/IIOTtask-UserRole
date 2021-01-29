@@ -1,4 +1,3 @@
-<p>personal-details works!</p>
 <!-- <form #personal_details="ngForm" >
     <div class="surveyContainer">
         <div class="form-group" >
@@ -274,7 +273,8 @@
 
 
 </form> -->
-<h2 style="text-align: center;">Pesronal Information</h2><br>
+<form #regform="ngForm">
+<h2 style="text-align: center;">Personal Information</h2><br>
 <div class="container container-fluid ">
     <div class="row">
         
@@ -308,7 +308,7 @@
                                     Enter Valid Email Address
                                 </div><br>
                             </div>
-                            {{user.email}}
+                            
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Your Address Line 1 *" value="" pattern="[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*" name="addressLine1" #addressLine1="ngModel"
                                 [(ngModel)]=user.addressLine1 required />
@@ -345,12 +345,10 @@
                             </div>
                             <div style="color:red" *ngIf="pan.invalid && (pan.dirty||pan.touched)">
                                 <div *ngIf="pan.errors?.required">
-                                    <h2>PAN No. is required</h2>
+                                    PAN No. is required
                                 </div>
                                 <div *ngIf="pan.errors?.pattern">
-                                    <h2>
                                         Please enter valid PAN Number
-                                    </h2>
                                 </div>
                             </div>
 
@@ -456,7 +454,7 @@
                                 </div>
                             </div>
                             
-                            <input type="submit" class="btnRegister"  value="Register"/>
+                            <input type="submit" class="btnRegister"  value="Next" [disabled]="!regform.valid" (click) = "nextpage()"/>
                         </div>
                     </div>
                 </div>
@@ -467,3 +465,4 @@
 
 </div>
 <br>
+</form>

@@ -18,4 +18,10 @@ export class DocumentsUploadComponent implements OnInit {
   degree:any;
   profilePic:any;
 
+  saveToDb() {
+    sessionStorage.removeItem('personalDetails');
+    sessionStorage.removeItem('workExperience');
+    sessionStorage.clear();
+  }
+
 }

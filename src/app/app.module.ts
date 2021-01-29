@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { EducationComponent } from './education/education.component';
@@ -28,7 +29,7 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
     ReactiveFormsModule,
     ValidateEqualModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
