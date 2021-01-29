@@ -8,8 +8,8 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
 const routes: Routes = [
   {path: 'personal-details', component: RegisterComponent},
   { path: 'education-details', component: EducationComponent},
-  {path: 'work-experience', component: WorkExperienceComponent},
-  {path: 'documents-upload',component: DocumentsUploadComponent}
+  {path: 'documents-upload',component: DocumentsUploadComponent},
+  {path: 'work-exp',component: WorkExperienceComponent}
 ];
 
 @NgModule({

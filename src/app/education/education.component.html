@@ -7,12 +7,7 @@
     <div class="welcome">Education Details</div> 
     
     <form [formGroup]="EducationForm" novalidate>
-<<<<<<< HEAD
         <ul class="radio-type">
-=======
-        
-       <!-- <ul class="radio-type">
->>>>>>> 0fb77cc0a00c40834a3380c742d73bc8fc87f508
             <li style="margin-right: 3%;">
                 <input type="radio" value="Secondary" id="secondary" formControlName="type" [(ngModel)]="education.type"  (change)="changeEducationType($event); checkExist(education.type);"/>
                 <label for="secondary">Secondary</label>

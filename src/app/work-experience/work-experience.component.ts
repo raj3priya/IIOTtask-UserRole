@@ -1,7 +1,4 @@
-import { group } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { WorkExperience } from '../model/WorkExperience';
 
 @Component({
@@ -11,18 +8,10 @@ import { WorkExperience } from '../model/WorkExperience';
 })
 export class WorkExperienceComponent implements OnInit {
 
-  WorkForm: FormGroup;
-  work = new WorkExperience();
-
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor() { }
+  work=new WorkExperience();
 
   ngOnInit(): void {
   }
 
-  save(){
-    console.log("in save");
-  }
-  next(){
-    this.router.navigateByUrl('/personal-details');
-  }
 }
