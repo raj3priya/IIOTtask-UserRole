@@ -44,7 +44,7 @@
     border: 1px solid black;
       border-radius: 1.5rem;
       padding: 2%;
-      width: 30%;
+      width: 60%;
       background: #f8f9fa;
       text-align: center;
   }
@@ -100,15 +100,15 @@
       margin-top: 10%;
   }
   .btnRegister{
-      float: right;
+      float: left;
       margin-top: 10%;
       border: none;
       border-radius: 1.5rem;
-      padding: 2%;
+      padding:1%;
       background: #0062cc;
       color: #fff;
       font-weight: 600;
-      width: 50%;
+      width: 30%;
       cursor: pointer;
   }
   .register .nav-tabs{

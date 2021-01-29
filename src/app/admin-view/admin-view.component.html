@@ -1,7 +1,7 @@
 <div class="container ">
-    <div class="row register-form">                     
-        <button class="btnRegister" (click)="viewButton = true" value="View All Champs">View all champs</button><br>
-        <input type="submit" class="btnRegister" value="Filter"/>
+    <div class="row register-form" style="margin-bottom: 60px;">                     
+        <button class="btnRegister" style="margin-left: 30%;" (click)="viewButton = true" value="View All Champs">View all champs</button><br>
+        <input type="submit" style="margin-left: 20px;" class="btnRegister" value="Filter"/>
         <div *ngIf="viewButton">
             Name: {{user.firstName}}&nbsp;{{user.lastName}}<br>
             Email: {{user.email}}<br>
