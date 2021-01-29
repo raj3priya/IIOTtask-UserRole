@@ -9,10 +9,9 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
 const routes: Routes = [
   {path: 'personal-details', component: RegisterComponent},
   { path: 'education-details', component: EducationComponent},
-  {path: 'work-experience', component: WorkExperienceComponent},
+  //{path: 'work-experience', component: WorkExperienceComponent},
   {path: 'documents-upload',component: DocumentsUploadComponent},
   {path: 'admin-view',component: AdminViewComponent},
-  {path: 'documents-upload',component: DocumentsUploadComponent},
   {path: 'work-exp',component: WorkExperienceComponent}
 ];
 
