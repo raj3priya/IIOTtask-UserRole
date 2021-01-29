@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(174, 174, 240);
 }
@@ -153,7 +153,7 @@ button:hover {
 
 .radio-type label:hover {
     background:  #87a6fc;
-}
+} */
 
 
 .container
@@ -216,7 +216,7 @@ button:hover {
     margin-top: 10%;
 }
 .btnRegister{
-    float: right;
+    /* float: right; */
     margin-top: 10%;
     border: none;
     border-radius: 1.5rem;
@@ -224,7 +224,7 @@ button:hover {
     background: #0062cc;
     color: #fff;
     font-weight: 600;
-    width: 50%;
+    width: 30%;
     cursor: pointer;
 }
 .register .nav-tabs{
