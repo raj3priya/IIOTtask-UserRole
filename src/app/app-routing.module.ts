@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'education-details', component: EducationComponent},
   {path: 'work-experience', component: WorkExperienceComponent},
   {path: 'documents-upload',component: DocumentsUploadComponent},
-  {path: 'admin-view',component: AdminViewComponent}  
+  {path: 'admin-view',component: AdminViewComponent},
+  {path: 'documents-upload',component: DocumentsUploadComponent},
+  {path: 'work-exp',component: WorkExperienceComponent}
 ];
 
 @NgModule({

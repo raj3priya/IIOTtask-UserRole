@@ -8,6 +8,7 @@ import { EducationComponent } from './education/education.component';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { DocumentsUploadComponent } from './documents-upload/documents-upload.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
+import { WorkExperienceComponent } from './work-experience/work-experience.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
     RegisterComponent,
     EducationComponent,
     DocumentsUploadComponent,
-    AdminViewComponent
+    AdminViewComponent,
+    WorkExperienceComponent
   ],
   imports: [
     BrowserModule,

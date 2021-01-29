@@ -11,5 +11,11 @@ export class DocumentsUploadComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  aadhar:any;
+  pan:any;
+  hsc:any;
+  sslc:any;
+  degree:any;
+  profilePic:any;
 
 }

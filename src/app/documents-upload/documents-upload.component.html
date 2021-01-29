@@ -1,0 +1,86 @@
+
+<h2>Documents Upload</h2><br>
+<form #upload="ngForm" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 register-right">
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row register-form">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="aadhar" style="float: left;">Aadhar Card</label>
+                                    <input type="file" class="form-control-file" id="aadhar" name="aadharCard"
+                                        #aadharCard="ngModel" [(ngModel)]=aadhar required>
+                                </div>
+                                <div style="color:red"
+                                    *ngIf="aadharCard.invalid && (aadharCard.dirty||aadharCard.touched)">
+                                    <div *ngIf="aadharCard.errors?.required">
+                                        Aadhar Card is required
+                                    </div><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pan" style="float: left;">PAN Card</label>
+                                    <input type="file" class="form-control-file" id="pan" name="panCard"
+                                        #panCard="ngModel" [(ngModel)]=pan required>
+                                </div>
+                                <div style="color:red" *ngIf="panCard.invalid && (panCard.dirty||panCard.touched)">
+                                    <div *ngIf="panCard.errors?.required">
+                                        PAN Card is required
+                                    </div><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="degree" style="float: left;">Degree Certificate</label>
+                                    <input type="file" class="form-control-file" id="degree" name="degreeCert"
+                                        #degreeCert="ngModel" [(ngModel)]=degree required>
+                                </div>
+                                <div style="color:red"
+                                    *ngIf="degreeCert.invalid && (degreeCert.dirty||degreeCert.touched)">
+                                    <div *ngIf="degreeCert.errors?.required">
+                                        Degree Certificate is required
+                                    </div><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="hsc" style="float: left;">HSC Certificate</label>
+                                    <input type="file" class="form-control-file" id="hsc" name="hscCert"
+                                        #hscCert="ngModel" [(ngModel)]=hsc reqiured>
+                                </div>
+                                <div style="color:red" *ngIf="hscCert.invalid && (hscCert.dirty||hscCert.touched)">
+                                    <div *ngIf="hscCert.errors?.required">
+                                        HSC Certificate is required
+                                    </div><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sslc" style="float: left;">SSLC Certificate</label>
+                                    <input type="file" class="form-control-file" id="sslc" name="sslcCert"
+                                        #sslcCert="ngModel" [(ngModel)]=sslc required>
+                                </div>
+                                <div style="color:red" *ngIf="sslcCert.invalid && (sslcCert.dirty||sslcCert.touched)">
+                                    <div *ngIf="sslcCert.errors?.required">
+                                        SSLC Certificate is required
+                                    </div><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pp" style="float: left;">Profile Picture</label>
+                                    <input type="file" class="form-control-file" id="pp" name="profile"
+                                        #profile="ngModel" [(ngModel)]=profilePic required>
+                                </div>
+                                <div style="color:red" *ngIf="profile.invalid && (profile.dirty||profile.touched)">
+                                    <div *ngIf="profile.errors?.required">
+                                        Profile is required
+                                    </div><br>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+<br>
