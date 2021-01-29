@@ -10,6 +10,8 @@ import { ValidateEqualModule } from 'ng-validate-equal';
 import { DocumentsUploadComponent } from './documents-upload/documents-upload.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 import { WorkExperienceComponent } from './work-experience/work-experience.component';
+import { ConfirmDetailsComponent } from './confirm-details/confirm-details.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
     EducationComponent,
     DocumentsUploadComponent,
     AdminViewComponent,
-    WorkExperienceComponent
+    WorkExperienceComponent,
+    ConfirmDetailsComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
