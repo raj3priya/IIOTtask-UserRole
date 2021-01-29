@@ -180,8 +180,8 @@ export class EducationComponent implements OnInit {
     
   }*/
 
-  next(){
-    this.router.navigateByUrl('/work-experience');
+  nextpage(){
+    this.router.navigateByUrl('/work-exp');
   }
 
   /*exist:boolean;
