@@ -1,8 +1,22 @@
-<p>admin-view works!</p>
 <div class="container ">
     <div class="row register-form">                     
-        <input type="submit" class="btnRegister"  value="View Employee"/><br>
+        <button class="btnRegister" (click)="viewButton = true" value="View All Champs">View all champs</button><br>
         <input type="submit" class="btnRegister" value="Filter"/>
+        <div *ngIf="viewButton">
+            Name: {{user.firstName}}&nbsp;{{user.lastName}}<br>
+            Email: {{user.email}}<br>
+            Gender: {{user.gender}}<br>
+            Date of Birth: {{user.dob}}<br>
+            Contact: {{user.phoneNo}}<br>
+            Address: {{user.addressLine1}},<br>
+            {{user.addressLine2}},<br>
+            {{user.city}} - {{user.pincode}}<br>
+            {{user.state}}<br>
+            Aadhar: {{user.aadhar}}<br>
+            Pan: {{user.pan}}<br>
+            
+            
+        </div>
     </div>
 </div>
 <!--
