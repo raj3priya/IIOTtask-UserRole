@@ -14,6 +14,12 @@ export class EducationComponent implements OnInit {
 
   EducationForm: FormGroup;
   education:EducationDetails = new EducationDetails();
+
+  secondaryEdu:EducationDetails = new EducationDetails();
+  higherSecondaryEdu:EducationDetails = new EducationDetails();
+  degreeEdu:EducationDetails = new EducationDetails();
+  diplomaEdu:EducationDetails = new EducationDetails();
+
   eduDetailsList:EducationDetails[] = [];
   type:string;
   degree:string;
@@ -146,7 +152,8 @@ export class EducationComponent implements OnInit {
     })
   }
   updated: boolean;
-  save(){
+  
+  /*save(){
 
     this.updated=false;
     if(this.eduDetailsList.length == 0) { // for the 1st time insertion
@@ -171,12 +178,13 @@ export class EducationComponent implements OnInit {
     //console.log(this.education);// to clear fields and initialise new object
     
     
-  }
+  }*/
 
   next(){
     this.router.navigateByUrl('/work-experience');
   }
-  exist:boolean;
+
+  /*exist:boolean;
   checkExist(eduType:string){
     console.log(eduType);
     this.exist = false;
@@ -195,6 +203,46 @@ export class EducationComponent implements OnInit {
       this.education = new EducationDetails();
       this.education.type = eduType;
     }
+  }*/
+
+  checkExist(eduType:string){
+    if(eduType == this.secondaryEdu.type){
+      this.education = this.secondaryEdu;
+      console.log(this.education);
+    }
+    else if(eduType == this.higherSecondaryEdu.type){
+      this.education = this.higherSecondaryEdu;
+      console.log(this.education);
+    }
+    else if(eduType == this.degreeEdu.type){
+      this.education = this.degreeEdu;
+      console.log(this.education);
+    }
+    else if(eduType == this.diplomaEdu.type){
+      this.education = this.diplomaEdu;
+      console.log(this.education);
+    }
+  }
+
+  save() {
+
+    if(this.education.type == 'Secondary'){
+      this.secondaryEdu = this.education;
+      console.log(this.secondaryEdu);
+    }
+    else if(this.education.type == 'HigherSecondary'){
+      this.higherSecondaryEdu = this.education;
+      console.log(this.higherSecondaryEdu);
+    }
+    else if(this.education.type == 'Degree'){
+      this.degreeEdu = this.education;
+      console.log(this.degreeEdu);
+    }
+    else if(this.education.type == 'Diploma') {
+      this.diplomaEdu = this.education;
+      console.log(this.diplomaEdu);
+    }
+
   }
 
 }
