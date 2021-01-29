@@ -273,6 +273,7 @@
 
 
 </form> -->
+<form #regform="ngForm">
 <h2 style="text-align: center;">Personal Information</h2><br>
 <div class="container container-fluid ">
     <div class="row">
@@ -453,7 +454,7 @@
                                 </div>
                             </div>
                             
-                            <input type="submit" class="btnRegister"  value="Register"/>
+                            <input type="submit" class="btnRegister"  value="Next" [disabled]="!regform.valid" (click) = "nextpage()"/>
                         </div>
                     </div>
                 </div>
@@ -464,3 +465,4 @@
 
 </div>
 <br>
+</form>

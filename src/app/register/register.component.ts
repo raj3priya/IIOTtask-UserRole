@@ -11,13 +11,15 @@ import { UserPersonal } from '../model/UserPersonal';
 export class RegisterComponent implements OnInit {
 
   RegForm: FormGroup;
+  user =new UserPersonal();
+  confirmPassword:string;
 
   constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(sessionStorage.getItem('personalDetails') || '{}');
   }
-  user =new UserPersonal();
-  confirmPassword:string;
+  
   
   register() {
     console.log("Register clicked");
@@ -78,6 +80,14 @@ export class RegisterComponent implements OnInit {
   cities:Array<any>;
   changeCity(selectedState: any) {
     this.cities = this.StateAndCity.find(s => s.state == selectedState).cities;
+  }
+
+  storeInSession() {
+    sessionStorage.setItem('personalDetails',JSON.stringify(this.user));
+  }
+
+  nextpage(){
+    this.router.navigateByUrl('/education-details');
   }
 
 }
