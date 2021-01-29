@@ -142,3 +142,11 @@
       margin-bottom: -15%;
       color: #495057;
   }
+  table, th , td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  thead {
+    background-color: rgb(136, 181, 233);
+  }
