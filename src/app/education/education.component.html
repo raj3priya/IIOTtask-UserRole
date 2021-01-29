@@ -90,7 +90,7 @@
 
 
 <form>
-    <h2 style="text-align: center;">Pesronal Information</h2><br>
+    <h2 style="text-align: center;">Education Details</h2><br>
     <div class="container container-fluid ">
         <div class="row">
             <div class="col-md-12 register-right">
@@ -106,33 +106,34 @@
                                         <option *ngFor="let edu of educationType" value="{{edu.type}}">{{edu.type}}
                                         </option>
                                     </select>
-                                </div><br>
+                                </div>
                                 <div class="form-group">
                                     <!-- <label style="float: left;">Degree/Diploma:</label><br> -->
                                     <select class="form-control" [(ngModel)]="education.degree" name="degree"
                                         aria-placeholder="type">
                                         <option value=undefined disabled selected>select a course</option>
                                         <option *ngFor="let course of courses" value="{{course}}">{{course}}</option>
-                                    </select><br>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <!-- <label style="float: left;">Branch:</label><br> -->
                                     <select class="form-control" [(ngModel)]="education.branch" name="branch">
                                         <option value=undefined selected disabled>select your branch</option>
                                         <option *ngFor="let branch of branches" value="{{branch}}">{{branch}}</option>
-                                    </select><br>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <!-- <label style="float: left;">Start Date:</label> -->
                                     <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
                                         class="form-control" placeholder="Start Date *"
                                         [(ngModel)]="education.startDate" name="startDate">
+                                    
                                 </div>
                                 <div class="form-group">
-                                    <label style="float: left;">End Date:</label><br>
+                                    <!-- <label style="float: left;">End Date:</label><br> -->
                                     <input type="text" class="form-control" onfocus="(this.type='date')"
                                         onblur="(this.type='text')" [(ngModel)]="education.endDate" name="endDate"
-                                        placeholder="End Date *"><br>
+                                        placeholder="End Date *">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label style="float: left;">Mode of Study:</label><br> -->
@@ -143,42 +144,32 @@
 
                                 </div>
                                 <div class="form-group">
-                                    <label style="float: left;">Institution:</label><br>
+                                    <!-- <label style="float: left;">Institution:</label><br> -->
                                     <input type="text" class="form-control" [(ngModel)]="education.institution"
-                                        name="institution">
+                                        name="institution" placeholder="Enter Institution">
 
                                 </div>
                                 <div class="form-group">
-                                    <label style="float: left;">State:</label><br>
+                                    <!-- <label style="float: left;">State:</label><br> -->
                                     <select class="form-control" placeholder="State" [(ngModel)]="education.state" name="state"
                                         (change)="changeCity($event)">
                                         <option value=undefined disabled selected>select state</option>
                                         <option *ngFor="let state of StateAndCity" value="{{state.state}}">
                                             {{state.state}}</option>
-                                    </select><br><br>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label style="float: left;">State:</label><br>
-                                    <select class="form-control" [(ngModel)]="education.state" name="state"
-                                        (change)="changeCity($event)">
-                                        <option value=undefined disabled selected>select state</option>
-                                        <option *ngFor="let state of StateAndCity" value="{{state.state}}">
-                                            {{state.state}}</option>
-                                    </select><br><br>
-
-                                </div>
-                                <div class="form-group">
-                                    <label style="float: left;">City:</label><br>
+                                    <!-- <label style="float: left;">City:</label><br> -->
                                     <select class="form-control" [(ngModel)]="education.city" name="city">
                                         <option value=undefined disabled selected>select city</option>
                                         <option *ngFor="let city of cities" value="{{city}}">{{city}}</option>
-                                    </select><br><br>
+                                    </select>
 
                                 </div>
                                 <div class="form-group">
-                                    <label style="float: left;">Percentage:</label><br>
+                                    <!-- <label style="float: left;">Percentage:</label><br> -->
                                     <input type="number" class="form-control"  [(ngModel)]="education.percentage"
-                                        name="percentage"><br><br>
+                                        name="percentage" placeholder="Enter Percentage *"><br><br>
                                     <div class="text-danger"
                                         *ngIf="EducationForm.controls.percentage.touched && EducationForm.controls.percentage.hasError('pattern')">
                                         Invalid
