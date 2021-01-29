@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-documents-upload',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentsUploadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    sessionStorage.setItem('aadhar',this.aadhar);
   }
   aadhar:any;
   pan:any;
@@ -18,10 +20,9 @@ export class DocumentsUploadComponent implements OnInit {
   degree:any;
   profilePic:any;
 
-  saveToDb() {
-    sessionStorage.removeItem('personalDetails');
-    sessionStorage.removeItem('workExperience');
-    sessionStorage.clear();
+  nextpage(){
+    //sessionStorage.setItem('personalDetails',JSON.stringify(this.user));
+    this.router.navigateByUrl('/confirm-details');
   }
 
 }
