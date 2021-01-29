@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { EducationComponent } from './education/education.component';
 import { ValidateEqualModule } from 'ng-validate-equal';
 import { DocumentsUploadComponent } from './documents-upload/documents-upload.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
 import { WorkExperienceComponent } from './work-experience/work-experience.component';
 
 
@@ -17,6 +18,7 @@ import { WorkExperienceComponent } from './work-experience/work-experience.compo
     RegisterComponent,
     EducationComponent,
     DocumentsUploadComponent,
+    AdminViewComponent,
     WorkExperienceComponent
   ],
   imports: [
