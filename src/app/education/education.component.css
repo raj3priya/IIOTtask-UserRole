@@ -259,3 +259,11 @@ button:hover {
     margin-bottom: -15%;
     color: #495057;
 }
+/* input[type="date"]::before { 
+	content: attr(data-placeholder); 
+	width: 100%;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::after { display: none } */
+/* input[type="date"]:valid::after { content: attr(value); } */
+
