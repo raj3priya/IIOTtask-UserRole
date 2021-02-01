@@ -23,10 +23,10 @@ export class EducationComponent implements OnInit {
   eduDetailsList: EducationDetails[] = [];
   type: string;
   degree: string;
-  branch: string;
-  mode: string;
+  //branch: string;
+  //mode: string;
   state: string;
-  city: string;
+  //city: string;
 
 
 
@@ -37,7 +37,7 @@ export class EducationComponent implements OnInit {
         "B.Pharm", "B.Sc(Engg)", "B.Sc(IT)", "B.Sc(Tech)", "B.Tech",
         "B.Tech(HONS)", "B.A", "Bachelor in Infmn Systems",
         "Bachelor of Fine Arts", "Bachelor of Mass Media", "BBA",
-        "BCA", "BE", "BMS", "Applied Arts"],
+        "BCA", "BE", "BMS",],
       branch: ["Statistics", "Mechatronics", "Electronics & Communication",
         "Financial Accounting", "Software Enhineering", "Computer Engineering",
         "Computer Science & Engineering", "Construction Engineering", "Digital Electronics",
@@ -132,25 +132,105 @@ export class EducationComponent implements OnInit {
     { state: 'West Bengal', cities: [""] },
   ];
   cities: Array<any>;
+  change: boolean = false;
+  modes:Array<any>;
+  states:Array<any>;
+  selectedCity:Array<any>;
+  changeCityBool:boolean=false;
+
 
   changeCity(e: any) {
+    console.log(e)
+    
+    this.changeCityBool=false;
     this.cities = this.StateAndCity.find(s => s.state == e.target.value).cities;
   }
   changeEducationType(e: any) {
-  
+    
+    
     //this will give array of the filtered object Now
-    // if(this.eduDetailsList.length!= 0)
-    // {
-    //   this.educationType=this.educationType.filter((ed)=>ed.type=e.target.value);
-    // }
-    this.courses = this.educationType.find(edu => edu.type == e.target.value).courses;
-    this.branches = this.educationType.find(edu => edu.type == e.target.value).branch;
+    if (this.eduDetailsList.length != 0) {
+      var check = this.eduDetailsList.find((ch) => ch.type == e.target.value)
+      console.log(check,"check")
+      if (check) {
+        this.changeCityBool=true;
+        this.change = true
+        var Type = this.educationType.filter((ed) => ed.type == e.target.value);
+        var course = (Type.find(edu => edu.type == e.target.value).courses)
+        this.courses = course.filter((c: any) => c !== check?.degree)
+        this.courses.unshift(check?.degree)
+        var branchvar=(Type.find(edu => edu.type ==e.target.value).branch)
+        this.branches=branchvar.filter((b:any) => b !==check?.branch)
+        this.branches.unshift(check?.branch)
+        this.modes=this.educationMode.filter((e:any) => e !==check?.mode)
+        this.modes.unshift(check?.mode);
+
+        
+        var temp=this.StateAndCity.find((s)=> s.state==check?.state)
+        console.log(temp,"temp")
+        this.StateAndCity=this.StateAndCity.filter((s) =>s.state !==check?.state)
+        this.StateAndCity.unshift(temp);
+        console.log(this.StateAndCity,"statecity")
+        this.states=this.StateAndCity.map((m)=>m.state)
+        console.log(this.states,"statesvonly");
+
+        this.selectedCity=this.StateAndCity[0].cities;
+        var selCity=this.selectedCity.find((ct)=>ct==check?.city)
+        this.selectedCity.filter((ct)=>ct !==check?.city)
+        this.selectedCity.unshift(selCity)
+
+        this.education.startDate=check?.startDate
+        this.education.endDate=check?.endDate
+        this.education.institution=check?.institution
+        this.education.percentage=check?.percentage
+
+        
+        // var statetype=this.StateAndCity.filter((st) => st.state ==check?.state);
+        // var city=(statetype.find(ct => ct.state==check?.city).cities)
+        // this.cities=city.filter((c:any) =>c !==check?.city)
+        // this.cities.unshift(check?.city)
+
+        
+      }
+      else {
+        this.change = false;
+        this.changeCityBool=false;
+        this.courses = this.educationType.find(edu => edu.type == e.target.value).courses;
+        this.branches = this.educationType.find(edu => edu.type == e.target.value).branch;
+        this.modes=this.educationMode;
+        this.states=this.StateAndCity.find(st =>st.state);
+        console.log(this.states);
+        //this.cities=this.StateAndCity.find(st =>st.state ==e.target.value).cities;
+
+        this.education = new EducationDetails();
+        this.education.startDate=new Date("yyyy-mm-dd");
+        //document.getElementById('startDate').valueAsDate=null;
+        this.education.endDate=new Date();
+        this.education.institution='';
+        this.education.percentage=0;
+        
+
+//try once
+      }
+
+    }
+    else {
+      this.courses = this.educationType.find(edu => edu.type == e.target.value).courses;
+      this.branches = this.educationType.find(edu => edu.type == e.target.value).branch;
+      this.modes=this.educationMode;
+
+      // this.states=this.StateAndCity.filter(st=>st.state);
+      // console.log(this.states);
+      // this.cities=this.StateAndCity.find(st =>st.state ==e.target.value).cities;
+      
+    }
+    
   }
 
   constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.eduDetailsList = JSON.parse(sessionStorage.getItem('education') || '{}');
+
     this.EducationForm = this.fb.group({
       type: ["", Validators.required],
       degree: ["", Validators.required],
@@ -166,101 +246,46 @@ export class EducationComponent implements OnInit {
   }
   updated: boolean;
 
-  save(){
 
-    this.updated=false;
-    if(this.eduDetailsList.length == 0) { // for the 1st time insertion
+  save() {
+
+    this.updated = false;
+    if (this.eduDetailsList.length == 0) { // for the 1st time insertion
       this.eduDetailsList.push(this.education);
       this.updated = true;
     } else {
-      for(var i=0; i < this.eduDetailsList.length && !this.updated ; i++){
-        if(this.eduDetailsList[i].type == this.education.type) {  //if already exists, update
+      if(this.education.degree === undefined)
+      {
+        var check=this.eduDetailsList.find((e)=>e.type== this.education.type)
+        this.education.degree=check?.degree;
+      
+      }
+      for (var i = 0; i < this.eduDetailsList.length && !this.updated; i++) {
+        if (this.eduDetailsList[i].type == this.education.type) {  //if already exists, update
           this.eduDetailsList[i] = this.education;
           this.updated = true;
+
           break;
         }
-        else{
+        else {
           this.eduDetailsList.push(this.education);
-          break; 
+
+          break;
         }
       }
+
     }
-    console.log(this.eduDetailsList); 
-    this.education = new EducationDetails();  
-    this.education.type ='';
+    console.log(this.eduDetailsList);
+    this.education = new EducationDetails();
+    this.education.type = 'undefined';
     //console.log(this.education);// to clear fields and initialise new object
-    
-    
+
+
   }
 
-  nextpage(){
-    this.eduDetailsList.push(this.secondaryEdu);
-    this.eduDetailsList.push(this.higherSecondaryEdu);
-    this.eduDetailsList.push(this.degreeEdu);
-    this.eduDetailsList.push(this.diplomaEdu);
-    sessionStorage.setItem('education',JSON.stringify(this.eduDetailsList));
-    this.router.navigateByUrl('/work-exp');
+  next() {
+    this.router.navigateByUrl('/work-experience');
+
   }
-
-  /*exist:boolean;
-  checkExist(eduType:string){
-    console.log(eduType);
-    this.exist = false;
-    for(var i=0; i < this.eduDetailsList.length; i++){
-      //console.log(this.eduDetailsList[i]);
-      if(this.eduDetailsList[i].type == eduType){
-        console.log(this.eduDetailsList[i].type + "  exists");
-        this.exist=true;
-        this.education = this.eduDetailsList[i]; //to show values in respective fields
-        break;
-      }
-    }
-
-    if(this.exist == false){
-      console.log(eduType+" not exists")
-      this.education = new EducationDetails();
-      this.education.type = eduType;
-    }
-  }*/
-
-  checkExist(eduType: string) {
-    if (eduType == this.secondaryEdu.type) {
-      this.education = this.secondaryEdu;
-      console.log(this.education);
-    }
-    else if (eduType == this.higherSecondaryEdu.type) {
-      this.education = this.higherSecondaryEdu;
-      console.log(this.education);
-    }
-    else if (eduType == this.degreeEdu.type) {
-      this.education = this.degreeEdu;
-      console.log(this.education);
-    }
-    else if (eduType == this.diplomaEdu.type) {
-      this.education = this.diplomaEdu;
-      console.log(this.education);
-    }
-  }
-
-  // save() {
-
-  //   if (this.education.type == 'Secondary') {
-  //     this.secondaryEdu = this.education;
-  //     console.log(this.secondaryEdu);
-  //   }
-  //   else if (this.education.type == 'HigherSecondary') {
-  //     this.higherSecondaryEdu = this.education;
-  //     console.log(this.higherSecondaryEdu);
-  //   }
-  //   else if (this.education.type == 'Degree') {
-  //     this.degreeEdu = this.education;
-  //     console.log(this.degreeEdu);
-  //   }
-  //   else if (this.education.type == 'Diploma') {
-  //     this.diplomaEdu = this.education;
-  //     console.log(this.diplomaEdu);
-  //   }
-
-  // }
 
 }

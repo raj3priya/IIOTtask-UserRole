@@ -1,12 +1,12 @@
 export class EducationDetails {
     type:string;
-    degree:string;
-    branch:string;
-    mode:string;
+    degree:string|undefined;
+    branch:any;
+    mode:string|undefined;
     startDate:Date;
     endDate:Date;
     institution:string;
-    state:string;
-    city:string;
+    state:string|undefined;
+    city:string|undefined;
     percentage:number;
 }
