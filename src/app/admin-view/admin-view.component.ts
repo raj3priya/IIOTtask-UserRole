@@ -14,15 +14,13 @@ export class AdminViewComponent implements OnInit {
   work = new WorkExperience();
   user =new UserPersonal();
   eduDetailsList:EducationDetails[] = [];
-  aadhar:any;
 
   constructor() { }
 
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem('personalDetails') || '{}');
-    this.eduDetailsList = JSON.parse(sessionStorage.getItem('education') || '{}');
+    this.eduDetailsList = JSON.parse(sessionStorage.getItem('educationList') || '{}');
     this.work = JSON.parse(sessionStorage.getItem('workExperience') || '{}');
-    this.aadhar = sessionStorage.getItem('aadhar');
 
   }
 

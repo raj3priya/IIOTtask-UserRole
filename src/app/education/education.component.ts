@@ -283,8 +283,9 @@ export class EducationComponent implements OnInit {
 
   }
 
-  next() {
-    this.router.navigateByUrl('/work-experience');
+  nextpage() {
+    sessionStorage.setItem('educationList',JSON.stringify(this.eduDetailsList));
+    this.router.navigateByUrl('/work-exp');
 
   }
 

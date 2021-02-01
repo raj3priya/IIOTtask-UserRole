@@ -18,13 +18,14 @@ export class ConfirmDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(sessionStorage.getItem('personalDetails') || '{}');
-    this.eduDetailsList = JSON.parse(sessionStorage.getItem('education') || '{}');
+    this.eduDetailsList = JSON.parse(sessionStorage.getItem('educationList') || '{}');
     this.work = JSON.parse(sessionStorage.getItem('workExperience') || '{}');
   }
 
   saveToDb() {
     sessionStorage.removeItem('personalDetails');
     sessionStorage.removeItem('workExperience');
+    sessionStorage.removeItem('educationList')
     sessionStorage.clear();
   }
 

@@ -35,6 +35,55 @@
                         <td colspan="2">{{user.pan}}</td>
                     </tr>
                 </tbody>
+                <div *ngFor="let education of eduDetailsList">
+                    <div *ngIf="education.type == 'Secondary'">
+                        <thead>
+                            <th colspan="6">Secondary Education</th>
+                        </thead>
+                    </div>  
+                    <div *ngIf="education.type == 'HigherSecondary'">
+                        <thead>
+                            <th colspan="6">Higher Education</th>
+                        </thead>
+                    </div>
+                    <div *ngIf="education.type == 'Degree'">
+                        <thead>
+                            <th colspan="6">Degree</th>
+                        </thead>
+                    </div>   
+                    <div *ngIf="education.type == 'Diploma'">
+                        <thead>
+                            <th colspan="6">Diploma</th>
+                        </thead>
+                    </div>
+                    <tbody>
+                        <tr>
+                            <td><b>Course</b></td>
+                            <td>{{education.degree}}</td>
+                            <td><b>Branch</b></td>
+                            <td>{{education.branch}}</td>
+                            <td><b>Mode</b></td>
+                            <td>{{education.mode}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Institution</b></td>
+                            <td>{{education.institution}}</td>
+                            <td><b>State</b></td>
+                            <td>{{education.state}}</td>
+                            <td><b>City</b></td>
+                            <td>{{education.city}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Percentage</b></td>
+                            <td>{{education.percentage}}</td>
+                            <td><b>Start Date</b></td>
+                            <td>{{education.startDate}}</td>
+                            <td><b>End Date</b></td>
+                            <td>{{education.endDate}}</td>
+                        </tr>
+                    </tbody>    
+                    
+                </div>
                 <thead>
                     <th colspan="6">Work Experience</th>
                 </thead>
